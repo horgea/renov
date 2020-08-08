@@ -6,7 +6,8 @@
     "chrome": "npx cypress run --headless --browser chrome",
     "firefox": "npx cypress run --headless --browser firefox",
     "edge": "npx cypress run --headless --browser edge",
-    "all": "npm run chrome & npm run firefox & npm run edge",
+    "all": "npm run chrome && npm run firefox && npm run edge",
+    "parallel": "npm run chrome & npm run firefox & npm run edge",
     "e2e:report": "node cypress_runner",
     "start": "cypress open"
   },
@@ -14,6 +15,7 @@
     "cypress": "^4.12.1",
     "git": "^0.1.5",
     "node-fetch": "^2.6.0",
+    "npm": "^6.14.7",
     "npx": "^10.2.2"
   },
   "config": {
