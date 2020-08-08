@@ -1,6 +1,7 @@
 import { range } from "../core/utils";
 
 describe('Test some complicated scenarios', () => {
+
     beforeEach(() => {
         cy.viewport('macbook-13')
         cy.setCookie('eu_cookie_consent', '%7B%22a%22%3A%7B%22estat%22%3A%5B%22customSavedPresentation%22%2C%22userSelection-list%22%2C%22navtree-user-settings%22%5D%2C%22europa%22%3A%5B%22all_documented%22%5D%7D%2C%22r%22%3A%7B%7D%7D')
@@ -62,7 +63,6 @@ describe('Test some complicated scenarios', () => {
                                             .find('.label')
                                             .each(item => {
                                                 let myYear = parseInt(item.text())
-                                                expect(myYear).to.be.within(fromValue, toValue)
                                                 mySet.add(myYear)
                                             })
                                         cy.get('.md-virtual-repeat-offsetter')
@@ -72,8 +72,15 @@ describe('Test some complicated scenarios', () => {
                                             .wait(500)
                                     })
 
+                                // Data Validation
                                 cy.wrap(mySet)
                                     .should('have.length', requiredItems, 'Total rows in table')
+                                    .then(content => {
+                                        const myArray = Array.from(content.values())
+                                        cy.wrap(myArray).each(year => {
+                                            expect(year).to.be.within(fromValue, toValue, 'Validate Year')
+                                        })
+                                    })
                             })
                     })
             })
@@ -104,4 +111,4 @@ describe('Test some complicated scenarios', () => {
                     })
             })
     })
-});
+})

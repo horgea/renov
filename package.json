@@ -6,7 +6,7 @@
     "chrome": "npx cypress run --headless --browser chrome",
     "firefox": "npx cypress run --headless --browser firefox",
     "edge": "npx cypress run --headless --browser edge",
-    "all": "npm run chrome && npm run firefox && npm run edge",
+    "all": "npm run chrome & npm run firefox & npm run edge",
     "e2e:report": "node cypress_runner",
     "start": "cypress open"
   },

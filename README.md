@@ -30,10 +30,12 @@ npx cypress run
 
 ## run tests directly from terminal headless in defined browser
 npx cypress run --browser chrome --headless
+## or 
+npm run chrome
 
 ## run a script that will run all tests in 3 browsers (chrome, firefox, edge). 
 ## You must have those browsers installed on the machine where run the tests. 
 ## You can modify the script from package.json file
-npm run cy:run
+npm run all
 
 ```
