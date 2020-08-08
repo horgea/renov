@@ -1,4 +1,5 @@
 {
     "baseUrl": "https://ec.europa.eu/",
-    "video": false
+    "video": false,
+    "trashAssetsBeforeRuns": false
 }

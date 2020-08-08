@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "cy:run": "npx cypress run --browser chrome --headless; npx cypress run --browser firefox --headless; npx cypress run --browser edge --headless",
+    "chrome": "npx cypress run --headless --browser chrome",
+    "firefox": "npx cypress run --headless --browser firefox",
+    "edge": "npx cypress run --headless --browser edge",
+    "all": "npm run chrome && npm run firefox && npm run edge",
     "e2e:report": "node cypress_runner",
     "start": "cypress open"
   },
