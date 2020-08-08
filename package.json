@@ -8,7 +8,6 @@
     "start": "cypress open"
   },
   "dependencies": {
-    "cypress": "^4.12.1",
     "git": "^0.1.5",
     "node-fetch": "^2.6.0",
     "xmlhttprequest": "^1.8.0"
@@ -27,5 +26,8 @@
       ],
       "post-merge": []
     }
+  },
+  "devDependencies": {
+    "cypress": "^4.12.1"
   }
 }
