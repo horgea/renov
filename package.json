@@ -1,0 +1,31 @@
+{
+  "name": "eurostat",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "cy:run": "npx cypress run --browser chrome --headless; npx cypress run --browser firefox --headless; npx cypress run --browser edge --headless",
+    "e2e:report": "node cypress_runner",
+    "start": "cypress open"
+  },
+  "dependencies": {
+    "cypress": "^4.12.1",
+    "git": "^0.1.5",
+    "node-fetch": "^2.6.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "simple",
+      "pre-commit": [
+        "stop-only --warn --folder cypress"
+      ],
+      "pre-push": [
+        "stop-only --folder cypress"
+      ],
+      "post-commit": [
+        "stop-only --folder cypress"
+      ],
+      "post-merge": []
+    }
+  }
+}
