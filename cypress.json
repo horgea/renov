@@ -1,5 +1,6 @@
 {
-    "baseUrl": "https://ec.europa.eu/",
-    "video": false,
-    "trashAssetsBeforeRuns": false
+  "baseUrl": "https://ec.europa.eu/",
+  "video": false,
+  "trashAssetsBeforeRuns": false,
+  "projectId": "2bibiu"
 }
