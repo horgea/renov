@@ -44,7 +44,7 @@ describe('Test some complicated scenarios', () => {
                     .children()
                     .first()
                     .then(toItem => {
-                        const toValue = (parseInt(toItem.text()) + 11)
+                        const toValue = parseInt(toItem.text())
 
                         cy.get('#dimension-4')
                             .children()
