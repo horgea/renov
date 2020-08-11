@@ -1,5 +1,6 @@
 {
     "baseUrl": "https://ec.europa.eu/",
-    "video": false,
-    "trashAssetsBeforeRuns": false
+    "video": true,
+    "trashAssetsBeforeRuns": true,
+    "projectId": "6riqjf"
 }
