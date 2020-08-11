@@ -105,7 +105,7 @@ describe('Test some complicated scenarios', () => {
                 //get all available cells and count the Commas 
                 cy.get('.cell-value')
                     .then(allCells => {
-                        const currentCommas = allCells.text().match(/[,]/g).length
+                        const currentCommas = allCells.text().match(/[:]/g).length
 
                         expect(currentDots).to.eql(currentCommas, 'All Dots have changed to Commas')
                     })
