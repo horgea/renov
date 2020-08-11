@@ -19,6 +19,16 @@ describe('Test some complicated scenarios', () => {
 
     it('1. Check Custom Format - Static Positions - From-to', () => {
 
+        cy.request{
+            method: postMessage,
+            url: 'das',
+
+        }().then({alfa} => {
+            expect(alfa.status == 200)
+            expect(alfa.)
+        })
+
+
         cy.contains('Create custom dataset')
             .should('be.visible')
             .click()
@@ -44,7 +54,7 @@ describe('Test some complicated scenarios', () => {
                     .children()
                     .first()
                     .then(toItem => {
-                        const toValue = parseInt(toItem.text())
+                        const toValue = (parseInt(toItem.text()) + 11)
 
                         cy.get('#dimension-4')
                             .children()

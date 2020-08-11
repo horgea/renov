@@ -18,7 +18,6 @@ describe('Test some complicated scenarios', () => {
     })
 
     it('1. Check Custom Format - Static Positions - From-to', () => {
-
         cy.contains('Create custom dataset')
             .should('be.visible')
             .click()
@@ -44,7 +43,7 @@ describe('Test some complicated scenarios', () => {
                     .children()
                     .first()
                     .then(toItem => {
-                        const toValue = parseInt(toItem.text())
+                        const toValue = (parseInt(toItem.text()) + 11)
 
                         cy.get('#dimension-4')
                             .children()
@@ -105,7 +104,7 @@ describe('Test some complicated scenarios', () => {
                 //get all available cells and count the Commas 
                 cy.get('.cell-value')
                     .then(allCells => {
-                        const currentCommas = allCells.text().match(/[:]/g).length
+                        const currentCommas = allCells.text().match(/[,]/g).length
 
                         expect(currentDots).to.eql(currentCommas, 'All Dots have changed to Commas')
                     })
