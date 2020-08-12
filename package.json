@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "r:chrome": "cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser chrome",
-    "r:firefox": "cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser firefox",
-    "r:edge": "cypress run --headless --browser edge",
+    "r:chrome": "cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser chrome --group Chrome",
+    "r:firefox": "cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser firefox --group Firefox",
+    "r:edge": "cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser edge --group Edge",
     "chrome": "cypress run --headless --browser chrome",
     "firefox": "cypress run --headless --browser firefox",
     "edge": "cypress run --headless --browser edge",
