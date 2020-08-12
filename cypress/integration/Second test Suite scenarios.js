@@ -17,7 +17,7 @@ describe('Test some complicated scenarios', () => {
             .should('not.exist', 'Wait for page to load')
     })
 
-    it('1. Check Custom Format - Static Positions - From-to', () => {
+    it.skip('1. Check Custom Format - Static Positions - From-to', () => {
 
         cy.contains('Create custom dataset')
             .should('be.visible')
@@ -86,7 +86,7 @@ describe('Test some complicated scenarios', () => {
             })
     })
 
-    it('2. Check Change Format of Decimal Symbol to Comma', () => {
+    it.skip('2. Check Change Format of Decimal Symbol to Comma', () => {
         cy.contains('Format')
             .should('be.visible')
             .click()
