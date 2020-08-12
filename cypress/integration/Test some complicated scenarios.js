@@ -43,7 +43,7 @@ describe('Test some complicated scenarios', () => {
                     .children()
                     .first()
                     .then(toItem => {
-                        const toValue = (parseInt(toItem.text()) + 11)
+                        const toValue = parseInt(toItem.text())
 
                         cy.get('#dimension-4')
                             .children()
@@ -67,7 +67,7 @@ describe('Test some complicated scenarios', () => {
                                         cy.get('.md-virtual-repeat-offsetter')
                                             .find('.label')
                                             .last()
-                                            .scrollIntoView()
+                                            .scrollIntoView({duration:1000})
                                             .wait(500)
                                     })
 

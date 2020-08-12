@@ -4,3 +4,4 @@
 **/.DS_Store
 /cypress/videos/
 /cypress/screenshots/
+**/debug.log
