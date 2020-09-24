@@ -12,14 +12,16 @@
     "remote": "npm run r:chrome && npm run r:firefox && npm run r:edge",
     "all": "npm run chrome && npm run firefox && npm run edge",
     "e2e:report": "node cypress_runner",
-    "start": "cypress open"
+    "start": "cypress open",
+    "update": "npm i cypress@latest typescript@latest -S -E"
   },
   "dependencies": {
-    "cypress": "^4.12.1",
+    "cypress": "5.2.0",
     "git": "^0.1.5",
     "node-fetch": "^2.6.0",
     "npm": "^6.14.7",
-    "npx": "^10.2.2"
+    "npx": "^10.2.2",
+    "typescript": "4.0.3"
   },
   "config": {
     "pre-git": {

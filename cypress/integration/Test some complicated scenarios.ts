@@ -1,3 +1,4 @@
+import { idText } from "typescript";
 import { range } from "../core/utils";
 
 describe('Test some complicated scenarios', () => {
@@ -18,7 +19,7 @@ describe('Test some complicated scenarios', () => {
     })
 
     it('1. Check Custom Format - Static Positions - From-to', () => {
-        cy.contains('Create custom dataset')
+        cy.get('#btnOpenCustomExtraction')
             .should('be.visible')
             .click()
 
@@ -92,8 +93,11 @@ describe('Test some complicated scenarios', () => {
 
         // get all available cells and count the Dots
         cy.get('.cell-value')
-            .then(allCells => {
-                const currentDots = allCells.text().match(/[.]/g).length
+            .then((allCells:any) => {
+                    let currentDots = allCells.text().match(/[.]/g).length
+                    if(currentDots == 0) {
+                        assert.fail("This dataset values don't have decimal data")
+                    }
 
                 cy.contains('comma')
                     .click()
@@ -103,7 +107,7 @@ describe('Test some complicated scenarios', () => {
 
                 //get all available cells and count the Commas 
                 cy.get('.cell-value')
-                    .then(allCells => {
+                    .then((allCells:any) => {
                         const currentCommas = allCells.text().match(/[,]/g).length
 
                         expect(currentDots).to.eql(currentCommas, 'All Dots have changed to Commas')
