@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://ec.europa.eu/",
+  "baseUrl": "https://webgate.test.ec.europa.eu",
   "video": false,
   "trashAssetsBeforeRuns": true,
   "projectId": "2bibiu"

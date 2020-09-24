@@ -9,7 +9,7 @@ describe('Test some complicated scenarios', () => {
         cy.route('**/GEO/getCodeListJson/**').as('myTable') //last request before page is loaded
 
         //Go to required dataset view
-        cy.visit('/eurostat/databrowser/view/T2020_10/default/table?lang=en')
+        cy.visit('https://ec.europa.eu/eurostat/databrowser/view/T2020_10/default/table?lang=en')
 
         //wait for required Table to load on page
         cy.wait('@myTable', { timeout: 15000 })
