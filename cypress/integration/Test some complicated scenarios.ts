@@ -1,4 +1,3 @@
-import { idText } from "typescript";
 import { range } from "../core/utils";
 
 describe('Test some complicated scenarios', () => {
