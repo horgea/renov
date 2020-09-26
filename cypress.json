@@ -2,5 +2,6 @@
   "baseUrl": "https://webgate.acceptance.ec.europa.eu",
   "video": true,
   "trashAssetsBeforeRuns": true,
-  "projectId": "2bibiu"
+  "projectId": "2bibiu",
+  "spec": "cypress/integration/**.ts"
 }
