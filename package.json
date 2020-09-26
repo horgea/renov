@@ -27,7 +27,8 @@
     "npm": "^6.14.7",
     "npx": "^10.2.2",
     "typescript": "4.0.3",
-    "path": "0.12.7"
+    "path": "0.12.7",
+    "cypress-downloadfile": "1.2.0"
   },
   "config": {
     "pre-git": {

@@ -13,8 +13,8 @@ describe("Test bulk download", () => {
 
     cy.route(
       "POST",
-      "https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/download/bulk/*"
-    ).as("downloadBulk");
+      "https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/status/*"
+    ).as("exportStatus");
   });
 
   beforeEach(() => {
@@ -89,27 +89,39 @@ describe("Test bulk download", () => {
       .should("have.text", "Items selected: " + myCodeLists.length);
 
     cy.contains("Start").should("be.visible").click();
-    cy.contains("Start").should("not.be.visible");
 
-    cy.wait("@downloadBulk").then((xhr: any) => {
+    cy.wait("@exportCodeListItems").then((xhr: any) => {
+      expect(xhr.status).to.eql(200);
       expect(xhr.responseBody.uuid).to.exist;
-      const fileName: string =
-        "cypress/fixtures/archives_" + xhr.responseBody.uuid + ".zip";
-      //expect(xhr.status).to.eql(200)
+      const fileName: string = "archives_" + xhr.responseBody.uuid + ".zip";
+      const downloadFolder: string = "cypress/fixtures/";
+      const downloadStatus: string = `https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/status/${xhr.responseBody.uuid}`;
+      const dowloadLink: string = `https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/download/bulk/${xhr.responseBody.uuid}`;
+
+      //workaroud for page still loading
       cy.visit("/eurostat/databrowser/bulk?lang=en", {
         timeout: 500,
         failOnStatusCode: false,
       });
-      cy.readFile(fileName).then(() => {
-        cy.exec(`zipinfo -1 ${fileName}`).then((results) => {
-          const xmlFile = results.stdout
-            .split("\n")
-            .filter((file) => file.endsWith(".xml"));
-          const tsvFile = results.stdout
-            .split("\n")
-            .filter((file) => file.endsWith(".tsv"));
-          expect(xmlFile).to.have.length(myCodeLists.length);
-          expect(tsvFile).to.have.length(myCodeLists.length);
+
+      cy.request({
+        method: "POST",
+        url: downloadStatus,
+      }).then((response) => {
+        expect(response.status).to.eql(200);
+        cy.downloadFile(dowloadLink, downloadFolder, fileName).then(() => {
+          cy.readFile(downloadFolder + fileName).then(() => {
+            cy.exec(`zipinfo -1 ${downloadFolder +fileName}`).then((results) => {
+              const xmlFile = results.stdout
+                .split("\n")
+                .filter((file) => file.endsWith(".xml"));
+              const tsvFile = results.stdout
+                .split("\n")
+                .filter((file) => file.endsWith(".tsv"));
+              expect(xmlFile).to.have.length(myCodeLists.length);
+              expect(tsvFile).to.have.length(myCodeLists.length);
+            });
+          });
         });
       });
     });

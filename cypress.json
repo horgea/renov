@@ -2,8 +2,5 @@
   "baseUrl": "https://webgate.acceptance.ec.europa.eu",
   "video": false,
   "trashAssetsBeforeRuns": true,
-  "projectId": "2bibiu",
-  "env": {
-    "FOLDER": "12345"
-  }
+  "projectId": "2bibiu"
 }
