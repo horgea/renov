@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://webgate.acceptance.ec.europa.eu",
-  "video": false,
+  "video": true,
   "trashAssetsBeforeRuns": true,
   "projectId": "2bibiu"
 }

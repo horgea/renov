@@ -31,7 +31,9 @@ describe("Test bulk download", () => {
 
   function selectCodeLists(codeLists: string[]) {
     codeLists.forEach((item) => {
-      cy.get(".form-control").invoke("val", item).trigger("change");
+      cy.get(".form-control")
+        .invoke("val", item)
+        .trigger("change");
 
       cy.get(`#${item}`)
         .should("be.visible")
@@ -42,22 +44,24 @@ describe("Test bulk download", () => {
   }
 
   it("1. Download Code Lists", () => {
-    const myCodeLists = [
-      "AGE",
-      "AGRIPROD",
-      "ANIMALS",
-      "CONTRIB",
-      "FACILITY",
-      "LEARNING",
-      "OPERATOR",
-      "VEHICLE",
-      "VICTIM",
-      "VOLUME",
-    ];
-    //const myCodeLists = ["AGE", "AGRIPROD"];
-    cy.contains("Code lists", { timeout: 10000 }).should("be.visible").click();
+    // const myCodeLists = [
+    //   "AGE",
+    //   "AGRIPROD",
+    //   "ANIMALS",
+    //   "CONTRIB",
+    //   "FACILITY",
+    //   "LEARNING",
+    //   "OPERATOR",
+    //   "VEHICLE",
+    //   "VICTIM",
+    //   "VOLUME",
+    // ];
+    const myCodeLists = ["AGE", "AGRIPROD"];
+    cy.contains("Code lists", { timeout: 10000 })
+      .should("be.visible").click();
 
     cy.wait("@myRequest", { timeout: 25000 });
+    
     selectCodeLists(myCodeLists);
 
     cy.contains("code list (sdmx") //select sdmx
@@ -82,14 +86,18 @@ describe("Test bulk download", () => {
       .should("be.visible")
       .click();
 
-    cy.contains("CONFIRMATION").should("be.visible");
+    cy.contains("CONFIRMATION")
+      .should("be.visible");
 
     cy.get(".nav-pills li")
       .first()
       .should("have.text", "Items selected: " + myCodeLists.length);
 
-    cy.contains("Start").should("be.visible").click();
+    cy.contains("Start")
+      .should("be.visible")
+      .click();
 
+    //get uuid to request download
     cy.wait("@exportCodeListItems").then((xhr: any) => {
       expect(xhr.status).to.eql(200);
       expect(xhr.responseBody.uuid).to.exist;
@@ -104,6 +112,7 @@ describe("Test bulk download", () => {
         failOnStatusCode: false,
       });
 
+      //download file by request as UI is browser dependend
       cy.request({
         method: "POST",
         url: downloadStatus,
@@ -111,7 +120,7 @@ describe("Test bulk download", () => {
         expect(response.status).to.eql(200);
         cy.downloadFile(dowloadLink, downloadFolder, fileName).then(() => {
           cy.readFile(downloadFolder + fileName).then(() => {
-            cy.exec(`zipinfo -1 ${downloadFolder +fileName}`).then((results) => {
+            cy.exec(`zipinfo -1 ${downloadFolder + fileName}`).then((results) => {
               const xmlFile = results.stdout
                 .split("\n")
                 .filter((file) => file.endsWith(".xml"));
