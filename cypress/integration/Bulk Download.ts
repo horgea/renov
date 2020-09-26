@@ -108,7 +108,7 @@ describe("Test bulk download", () => {
 
       //workaroud for page still loading
       cy.visit("/eurostat/databrowser/bulk?lang=en", {
-        timeout: 500,
+        timeout: 1000,
         failOnStatusCode: false,
       });
 
