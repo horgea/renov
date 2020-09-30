@@ -10,12 +10,7 @@ describe("Test bulk download", () => {
       "POST",
       "https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/codeListItems"
     ).as("exportCodeListItems");
-
-    cy.route(
-      "POST",
-      "https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/bulk/1.0/LIVE/export/status/*"
-    ).as("exportStatus");
-  });
+  })
 
   beforeEach(() => {
     cy.exec("rm -f cypress/fixtures/*", { failOnNonZeroExit: false });
