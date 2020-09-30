@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "bulk_data": "npx cypress run --spec 'cypress/integration/Bulk_Download_data.ts'",
-    "bulk_codelist": "npx cypress run --spec 'cypress/integration/Bulk_Download_data.ts'",
+    "bulk_codelist": "npx cypress run --spec 'cypress/integration/Bulk_Download_codelist.ts'",
     "r:chrome": "npx cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser chrome --tag 'Chrome'",
     "r:firefox": "npx cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser firefox --tag 'Firefox'",
     "r:edge": "npx cypress run --record --key=dc63c548-c728-47ad-bc78-8703d5e6a870 --headless --browser edge --tag 'Edge'",
