@@ -37,6 +37,26 @@ describe("Test bulk download", () => {
     });
   }
 
+  function ValidateData(givenData: string[]) {
+    let good:string[] = [];
+    let bad:string[] = [];
+    givenData.forEach(data => {
+      cy.request({
+        method: 'GET',
+        url: `https://webgate.acceptance.ec.europa.eu/eurostat/databrowser-backend/api/extraction/1.0/LIVE/false/json/en/${data}/check`,
+        failOnStatusCode: false
+      }).then(response => {
+        if(response.status === 200) {
+          good.push(data)
+        } else {
+          bad.push(data)
+        }
+      })
+    })
+    console.log(bad)
+    return good
+  }
+
   it("1. Bulk Download Data", () => {
     
     //get RSS feed
@@ -44,14 +64,15 @@ describe("Test bulk download", () => {
       let mySet = new Set<string>()
       const xml:XMLDocument = Cypress.$.parseXML(response.body)
       const myItem = xml.getElementsByTagName("item")
-        Cypress.$(myItem).each(function() {
-          const item = Cypress.$(this).find("title").text().replace( /(^.*\[|\].*$)/g, '' )
-          mySet.add(item.toUpperCase())
-        })
+      Cypress.$(myItem).each(function() {
+        const item = Cypress.$(this).find("title").text().replace( /(^.*\[|\].*$)/g, '' ).toUpperCase()
+        mySet.add(item)
+      })
 
-        let myArray = Array.from(mySet);
-        let myCodeLists = myArray.filter((item,index) => myArray.indexOf(item) === index);
-
+      let myArray = Array.from(mySet);
+      let validArray = ValidateData(myArray)
+      let myCodeLists = validArray.filter((item,index) => validArray.indexOf(item) === index);
+        
         if(myArray.length >= 10){
           myCodeLists = myArray.slice(0, 10);
         }
